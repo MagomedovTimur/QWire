@@ -1,0 +1,104 @@
+  .toast {
+    display: block !important;
+    border-radius: 3px;
+    border: solid white 1px;
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    background: #ffffff33;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  }
+  
+  .toast.active {
+    transform: translateX(0%);
+  }
+  
+  .toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .toast-content .toast-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+
+    border: solid white 1px;
+  }
+/*
+
+  .toast-check-success{
+    background-color: #09ff00;
+  }
+  .toast-check-error{
+    background-color: #ff0000;
+  }
+*/
+
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+  
+  .message .toast-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+  }
+  
+  .message .toast-text.toast-text-1 {
+    font-weight: 600;
+  }
+  
+  .toast .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  
+  .toast .close:hover {
+    opacity: 1;
+  }
+  
+  .toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  
+  }
+  
+  .toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--myRed);
+  }
+  
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+  
+  @keyframes progress {
+    100% {
+      right: 100%;
+    }
+  }

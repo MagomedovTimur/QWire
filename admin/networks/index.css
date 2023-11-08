@@ -1,0 +1,157 @@
+.networkCard, .networksHoverConfigNetwork{
+
+    border-radius: 0.5rem;
+    height: 100%;
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
+}
+
+.networkName{
+    font-size: 3rem;
+    border-bottom: 1px solid var(--myWhite);
+    background-color: var(--myBackSec);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.networkAddress, .networkNATInterface, .networkPort, .networkAllowedNetwork, .networkDisallowedNetwork{
+    background-color: var(--myRed);
+    border-radius: 1rem;
+    padding: 0rem 0.5rem;
+    margin-left: 0.1rem;
+}
+
+.networkOptions, .networkAddAllowedNetwork, .networkAddDisallowedNetwork, .networkAddNATInterface{
+    border: 1px solid var(--myWhite);
+    border-radius: 1rem;
+    padding: 0.1rem 0.5rem;
+    margin-left: 0.3rem;
+
+    cursor: pointer;
+}
+
+.networkOptionsActive{
+    background-color: var(--myRed);
+    border-radius: 1rem;
+    padding: 0.1rem 0.5rem;
+    margin-left: 0.3rem;
+    border: 1px solid var(--myRed);
+    cursor: pointer;
+}
+
+.networkCardButtonsBox{
+    cursor: pointer;
+    background-color: var(--myRed);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    visibility: hidden;
+    margin:0;
+
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.networkCardButtonsBoxActive{
+    cursor: pointer;
+    visibility: visible;
+    
+    background-color: var(--myRed);
+    opacity: 1;
+
+
+    transition: 0.5s;
+}
+
+div.col-4:nth-child(2) > div:nth-child(1) > div:nth-child(5) > div:nth-child(1){
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.networkCardButtonsBoxDiv{
+    background-color: var(--myBack);
+}
+
+.networksHoverAddNetwork{
+    font-size: 4rem;
+    display:table;
+
+    width: 100%;
+
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
+
+    border: 1px solid var(--myWhite);
+    border-radius: 0.5rem;
+
+    height: calc(100% - 2.5rem);
+    opacity: 0.8;
+    cursor: pointer;
+
+    transition: 0.5s
+}
+
+.networksHoverAddNetwork:hover{
+
+    border: 1px solid rgba(172, 41, 41, 0); 
+    background-color: var(--myRed);
+
+    border-width: 0px; 
+    transition: 0.5s;
+}
+
+.networkAssignedNetworks, .networkAssignedInterface, .networkAssignedPort, .networkAllowedNetworks, .networkDisallowedNetworks{
+    background-color: var(--myBackSec);
+    font-size: 1.5rem;
+}
+
+.networkSettings{
+    font-size: 1.5rem;
+    background-color: var(--myBackSec);
+    border-bottom: 1px solid rgba(254, 252, 251, 0);
+    border-radius: 0 0 0.5rem 0.5rem;
+    transition: 0.5s;
+}
+
+.networkSettingsActive{
+    border-bottom: 1px solid  var(--myWhite);
+    border-radius: 0;
+    transition: 0.5s;
+}
+
+.networkAddress:focus-visible, .networkNATInterface:focus-visible, .networkPort:focus-visible, .networkAllowedNetwork:focus-visible{
+    outline: 1px solid var(--myWhite);
+}
+
+.networkSVGDisabled{
+    display: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    background-color: var(--myBackSec);
+}
+
+.dropdown-content span {
+    background-color: var(--myRed);
+    color: var(--myWhite);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.dropdown-show {display: block;}

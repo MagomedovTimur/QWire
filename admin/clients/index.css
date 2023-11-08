@@ -1,0 +1,175 @@
+.clientCard{
+
+    border-radius: 0.5rem;
+    height: 100%;
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
+}
+
+.clientCardActive {
+
+
+    transition: 1s ;
+}
+
+
+
+.clientName{
+    font-size: 2rem;
+    border-bottom: 1px solid var(--myWhite);
+    background-color: var(--myBackSec);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.clientNetworkName{
+    background-color: var(--myRed);
+    border-radius: 1rem;
+    padding: 0rem 0.5rem;
+    margin-left: 0.1rem;
+}
+
+.clientOptions{
+    border: 1px solid var(--myWhite);
+    border-radius: 1rem;
+    padding: 0.1rem 0.5rem;
+    margin-left: 0.3rem;
+}
+
+.clientCardButtonsBox{
+    cursor: pointer;
+    background-color: var(--myRed);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    visibility: hidden;
+    margin:0;
+
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.clientCardButtonsBoxActive{
+    cursor: pointer;
+    visibility: visible;
+    
+    background-color: var(--myRed);
+    opacity: 1;
+
+
+    transition: 0.5s;
+}
+
+.clientCardButtonsBoxDiv{
+    background-color: var(--myBack);
+}
+
+.clientConfigDialog{
+    background-color: var(--myBackSec);
+    border-radius: 1rem;
+}
+
+.clientConfigText{
+    border: 1px solid var(--myWhite);
+    border-radius: 1rem;
+    width: 50% !important;
+    overflow-y: scroll;
+    max-height: 12rem;
+
+    scrollbar-color: var(--myBackSec);
+    scrollbar-width: thin;
+}
+
+.clientConfigButtonsBox{
+    width: calc(50% - 14rem);
+    padding: 0 0 0 1rem  !important;
+    height: 12rem;
+}
+
+.clientConfigDialogButton{
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    border: 1px solid var(--myWhite);
+    cursor: pointer;
+}
+
+.clientNetworkAdd, .clientNetworkAddDisabled{
+    border: 1px solid var(--myWhite);
+    border-radius: 1rem;
+    padding: 0rem 1.2rem;
+    margin-left: 0.1rem;
+    cursor: pointer;
+}
+
+.clientsNetworksDialogNetwork{
+    background-color: var(--myBackSec);
+    border-radius: 1rem;
+    font-size: 2rem;
+    transition: 0.5s
+}
+
+.clientsNetworksDialogNetworkActive{
+    box-shadow: 0 0 10px 1px var(--myRed);
+    transition: 0.5s
+}
+
+.clientsNetworksDialogNetworkButton{
+    border-radius: 1rem;   
+    background-color: var(--myRed);
+    cursor: pointer;
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
+}
+
+.clientsHoverAddClient{
+    font-size: 4rem;
+    display:table;
+
+    width: 100%;
+
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
+
+    border: 1px solid var(--myWhite);
+    border-radius: 0.5rem;
+
+    height: calc(100% - 2.5rem);
+    opacity: 0.8;
+    cursor: pointer;
+
+    transition: 0.5s
+}
+
+.clientsHoverAddClient:hover{
+
+    border: 1px solid rgba(172, 41, 41, 0);
+    background-color: var(--myRed);
+
+    border-width: 0px; 
+    transition: 0.5s;
+}
+
+.clientAssignedNetworks{
+    background-color: var(--myBackSec);
+    border-bottom: 1px solid rgba(254, 252, 251, 0);
+    border-radius: 0 0 0.5rem 0.5rem;
+    transition: 0.5s;
+
+}
+
+.clientSettingsActive{
+    border-bottom: 1px solid  var(--myWhite);
+    border-radius: 0;
+    transition: 0.5s;
+}

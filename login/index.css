@@ -1,0 +1,57 @@
+.loginForm{
+    background-color: var(--myBackSec);
+    position: absolute;
+    top: 40%;
+    transform: translate(0, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px !important;
+    border-right: solid var(--myRed) 0.5rem;
+    border-left: solid var(--myRed) 0.5rem;
+
+    transition: 0.5s border, 1s width 0.5s, 1s padding 0.5s;
+}
+
+.logo{
+
+    top: 40%;
+    transform: translate(0, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--myRed);
+    font-family: 'Prompt', sans-serif;
+    font-size: 2rem;
+    display:inline;
+    padding: 0rem 1rem;
+    margin:auto;
+    position: absolute;
+}
+
+.loginFormClose{
+    width: 0px;
+
+    border-right: solid var(--myRed) 0rem;
+    border-left: solid var(--myRed) 0rem;
+
+    transition: 0.5s border 1s , 1s width, 1s padding;
+
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+.myInput{
+    opacity: 1;
+    transition:  0.5s ease-in 0.5s;
+}
+
+.myInputClose{
+    opacity: 0;
+    transition:  0.5s ease-in;
+}
+
+
+.logoClose{
+    top: 0%;
+    transform: translate(-50%, 0);
+    transition:  1.2s 1.7s ease-in-out;
+}

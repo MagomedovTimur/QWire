@@ -1,0 +1,7 @@
+fieldset {
+    border: 1px solid var(--myWhite);
+    border-radius: 1rem;
+}
+legend{
+    margin-bottom: 0 !important;
+}
