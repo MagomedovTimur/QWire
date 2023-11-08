@@ -28,7 +28,7 @@ pip3 install sys
 
 
 # Allowing web server to manage /etc/wireguard folder
-chown -R www-data: wireguard
+chown -R www-data: /etc/wireguard
 
 echo "Downloading and installing QWire..."
 # Colone QWire repository to user's foler and move to it
