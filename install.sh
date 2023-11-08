@@ -27,11 +27,16 @@ pip3 install ipaddress
 pip3 install sys
 
 
+# Allowing web server to manage /etc/wireguard folder
+chown -R www-data: wireguard
+
 echo "Downloading and installing QWire..."
 # Colone QWire repository to user's foler and move to it
 cd ~
-git clone https://github.com/MagomedovTimur/WireGuard-AllowedIPs-Calculator.git QWire
-cd Qwire
+git clone https://github.com/MagomedovTimur/QWire.git
+cd QWire
+
+rm -r /var/www/html/*
 
 # Copy html folder to web server's folder
 cp -r html/ /var/www/
@@ -55,3 +60,7 @@ read -r login
 echo -n "Create QWire password: "
 read -r password
 echo -e "<?php\n\$configUsername = \"$login\";\n\$configPassword = \"$password\";\n?>" > /var/www/html/config.php
+
+
+echo -e "Restarting web server..."
+

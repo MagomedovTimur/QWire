@@ -46,11 +46,10 @@ $(document).on('click', '.clientConfigButton', function() {
 
     $.post( "/admin/clients/getClient.php", {clientName: clientName}, function(data){
 
+        var clientVPNs = jQuery.parseJSON(data);
         
-        
-        if(data =! '[]'){
+        if(clientVPNs.length =! 0){
 
-            var clientVPNs = jQuery.parseJSON(data);
             $('.clientsDialog').html('<div class="row pl-5 mt-5 pt-5"><h1 class="col-11">'+clientName+'</h1><h1 class="col-1 text-center exitClientDialog" style="cursor: pointer;" onclick="exitClientDialog();">✕</h1></div>');
 
             var clientVPNs = jQuery.parseJSON(data);
