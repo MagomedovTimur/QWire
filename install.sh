@@ -1,24 +1,48 @@
 # make wireguard-ip-calculator.py unreadable
 
 
-
-
-
+#Define which linux distribution is insatlled
 #Update & upgrade linux
-#Define which packet mamanger is insatlled
 #Then install sudo, apache2, wireguard, curl, sudo, ls, rm, uptime, iptables, sar, grep, ip, free, awk, python3, mkdir, libapache2-mod-php
-echo "Upgrading and installing required packages..."
-if [ -x "$(command -v apk)" ];       then apk add --no-cache 
-elif [ -x "$(command -v apt-get)" ]; then apt-get update; apt-get upgrade; apt-get install sudo apache2 wireguard curl iptables sysstat grep iproute2 original-awk python3 libapache2-mod-php git
-elif [ -x "$(command -v dnf)" ];     then dnf install 
-elif [ -x "$(command -v zypper)" ];  then zypper install 
-else echo "FAILED TO INSTALL PACKAGES: Package manager not found. You must manually install: nano">&2; fi
+QWire_OS=`cat /etc/os-release | awk '/^ID=/{print substr($0,4)}'`
+
+case $QWire_OS  in
+    *"debian"*)
+        apt-get -y update
+		apt-get -y upgrade
+		apt-get -y install sudo apache2 wireguard curl iptables sysstat grep iproute2 original-awk python3 libapache2-mod-php git iptables-persistent
+        ;;
+    *)
+        echo "Failed to install packages: Package manager not found."
+        ;;
+esac
 
 
+echo "Setting up the iptables configuration..."
+#Wipe iptables
+iptables -P INPUT ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -F
 
-#disable all except iptables
+# Drop invalid packets
+iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+
+#Allow legit established connections
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+#allow ssh
+iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
 
+#Drop all packets by default
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+
+#Save iptables config
+iptables-save > /etc/iptables/rules.v4
 
 #Install requirements for python
 echo "Satisfying python requirements..."
@@ -41,8 +65,10 @@ rm -r /var/www/html/*
 # Copy html folder to web server's folder
 cp -r html/ /var/www/
 
+# Remove QWire download folder and installing script
 cd ~
 rm -r QWire
+rm QWire_temp.sh
 
 #Append QWire specific accesses to sudoers
 echo "Adding rights to web server"
@@ -63,4 +89,4 @@ echo -e "<?php\n\$configUsername = \"$login\";\n\$configPassword = \"$password\"
 
 
 echo -e "Restarting web server..."
-
+systemctl restart apache2
