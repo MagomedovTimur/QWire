@@ -1,25 +1,23 @@
-# make wireguard-ip-calculator.py unreadable
-
-
-#Define which linux distribution is insatlled
-#Update & upgrade linux
-#Then install sudo, apache2, wireguard, curl, sudo, ls, rm, uptime, iptables, sar, grep, ip, free, awk, python3, mkdir, libapache2-mod-php
+# Define which linux distribution is insatlled
+# Update & upgrade linux
+# Then install sudo, apache2, wireguard, curl, sudo, ls, rm, uptime, iptables, sar, grep, ip, free, awk, python3, mkdir, libapache2-mod-php
 QWire_OS=`cat /etc/os-release | awk '/^ID=/{print substr($0,4)}'`
 
 case $QWire_OS  in
     *"debian"*)
         apt-get -y update
 		apt-get -y upgrade
-		apt-get -y install sudo apache2 wireguard curl iptables sysstat grep iproute2 original-awk python3 libapache2-mod-php git iptables-persistent
+		apt-get -y install sudo apache2 wireguard curl iptables sysstat grep iproute2 python3 libapache2-mod-php git iptables-persistent
         ;;
     *)
-        echo "Failed to install packages: Package manager not found."
+        echo "Failed to install packages: Linux distribution is not supported by this script"
+        echo "Try to install QWire manually"
         ;;
 esac
 
 
 echo "Setting up the iptables configuration..."
-#Wipe iptables
+# Wipe iptables
 iptables -P INPUT ACCEPT
 iptables -P OUTPUT ACCEPT
 iptables -P FORWARD ACCEPT
@@ -28,23 +26,23 @@ iptables -F
 # Drop invalid packets
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
 
-#Allow legit established connections
+# Allow legit established connections
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
 
-#allow ssh
+# Allow ssh
 iptables -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 
+# Allow http
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
-#Drop all packets by default
+# Drop all packets by default
 iptables -P INPUT DROP
-iptables -P OUTPUT DROP
 iptables -P FORWARD DROP
 
-#Save iptables config
+# Save iptables config
 iptables-save > /etc/iptables/rules.v4
 
-#Install requirements for python
+# Install requirements for python
 echo "Satisfying python requirements..."
 pip3 install netaddr
 pip3 install ipaddress
@@ -70,7 +68,7 @@ cd ~
 rm -r QWire
 rm QWire_temp.sh
 
-#Append QWire specific accesses to sudoers
+# Append QWire specific accesses to sudoers
 echo "Adding rights to web server"
 echo -e "\n#QWire specification" >> /etc/sudoers
 echo -e "www-data ALL=(ALL) NOPASSWD: /usr/bin/wg-quick" >> /etc/sudoers
@@ -80,7 +78,7 @@ echo -e "www-data ALL=(ALL) NOPASSWD: /usr/bin/wg genkey" >> /etc/sudoers
 echo -e "www-data ALL=(ALL) NOPASSWD: /usr/bin/wg pubkey" >> /etc/sudoers
 echo -e "www-data ALL=(ALL) NOPASSWD: /usr/bin/wg show all\n" >> /etc/sudoers
 
-#Append user's login/password to config.php
+# Append user's login/password to config.php
 echo -n "Create QWire login: "
 read -r login
 echo -n "Create QWire password: "
