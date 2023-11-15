@@ -5,8 +5,6 @@ QWire_OS=`cat /etc/os-release | awk '/^ID=/{print substr($0,4)}'`
 
 case $QWire_OS  in
     *"debian"*)
-        apt-get -y update
-		apt-get -y upgrade
 		apt-get -y install sudo apache2 wireguard curl iptables sysstat grep iproute2 python3 libapache2-mod-php git iptables-persistent
         ;;
     *)
