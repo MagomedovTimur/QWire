@@ -64,7 +64,7 @@ cp -r html/ /var/www/
 # Remove QWire download folder and installing script
 cd ~
 rm -r QWire
-rm QWire_temp.sh
+rm QWire_install.sh
 
 # Append QWire specific accesses to sudoers
 echo "Adding rights to web server"
