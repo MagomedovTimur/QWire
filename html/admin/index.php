@@ -40,9 +40,10 @@
 
                 <div class="col-1 menuButton menuButtonActive">Monitoring</div>
 
+                <div class="col-1 menuButton">Networks</div>
+
                 <div class="col-1 menuButton">Clients</div>
 
-                <div class="col-1 menuButton">Networks</div>
 
                 <div class="col-1"></div>
                 <div class="col-1"></div>

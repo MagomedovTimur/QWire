@@ -13,7 +13,6 @@ $(document).on({
     }
 }, ".networkCard");
 
-
 $( ".networksHoverAddNetwork" ).on( "click", function() {
 
   $( ".networkCancelButton" ).on( "click", function() {
@@ -55,7 +54,7 @@ $(document).ready(function() {
 
 });
 
-$( ".networkOptions" ).on( "click", function() {
+$(document).on('click', '.networkOptions', function() {
 
   var svg0 = $(this).children('svg')[0];
   var svg1 = $(this).children('svg')[1];
@@ -138,7 +137,6 @@ $( ".networkCreateButton" ).on( "click", function() {
         var networkAllowedNetworksHTML = '';
         networkAllowedNetworks = networkAllowedNetworks.split(',');
 
-        console.log(networkAllowedNetworks);
         if (networkAllowedNetworks[0] != '') {
             var i = 0;
             while (networkAllowedNetworks.length > i) {
@@ -175,6 +173,13 @@ $( ".networkCreateButton" ).on( "click", function() {
                             </span>`;
         }
 
+        if(networkLANAccess == 1){
+            networkLANAccess = `<span class="networkOptions lanAccess networkOptionsActive"><svg class="" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" class="networkSVGDisabled"><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>LAN access</span>`;
+        }
+        else{
+            networkLANAccess = `<span class="networkOptions lanAccess"><svg class="networkSVGDisabled" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" class=""><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>LAN access</span>`;
+        }
+
         var newNetHTML = `
             <div class="col-4">
                 <div class="col-12 networkCard `+ networkName + `Card">
@@ -209,13 +214,7 @@ $( ".networkCreateButton" ).on( "click", function() {
                     </div>
                     
                     <div class="col-12 pt-2 p-1 pb-3 networkSettings">
-                        <span class="networkOptions lanAccess">
-                            <svg class="networkSVGDisabled" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
-                            LAN access
-                        </span>` +
-                        networkActive
-                        +`
+                        ` + networkLANAccess + networkActive +`
                     </div>
 
                     <div class="networkCardButtonsBoxDiv">
@@ -322,8 +321,7 @@ function changeNATInterface(button, text) {
     button.html(text);
 }
 
-$(".networkAddNATInterface").on('click', function(e) {
-
+$(document).on('click', '.networkAddNATInterface', function(e) {
     currentNATbutton = $(this);
     document.getElementById("NATInterfaceDropdown").innerHTML = '<span onclick="changeNATInterface(currentNATbutton, \'None\')" class="dropdownNATInterface my-1" style="background-color: transparent; border: 1px solid white">None</span>';
  
@@ -347,10 +345,12 @@ window.onclick = function(event) {
   }
 }
 
-$( ".networkAddAllowedNetwork" ).on( "click", function() {
+$(document).on('click', '.networkAddAllowedNetwork', function() {
     $(this).before('<span class="networkAllowedNetwork" contenteditable="true">0.0.0.0/0</span>');
 } );
-$( ".networkAddDisallowedNetwork" ).on( "click", function() {
+
+
+$(document).on('click', '.networkAddDisallowedNetwork', function() {
     $(this).before('<span class="networkDisallowedNetwork" contenteditable="true">0.0.0.0/0</span>');
 } );
 
@@ -359,6 +359,7 @@ $('body').on('keyup', '.networkAllowedNetwork', function(e) {
         $(this).remove();
     }
 });
+
 $('body').on('keyup', '.networkDisallowedNetwork', function(e) {
         if((e.key == 'Backspace' || e.key == 'Delete') && $( this ).html() == '') {
         $(this).remove();
@@ -388,3 +389,174 @@ function removeNetwork(networkName) {
 
     });
 }
+
+$(document).on('click', '.networkResetButton', function() {
+
+    var rootElement = $(this).parent().parent().parent();
+
+    // Network address
+    var newHTML = rootElement.children('.networkAssignedNetworks').children('.networkAddress').attr('default');
+    rootElement.children('.networkAssignedNetworks').children('.networkAddress').html(newHTML);
+
+    // NAT interface
+    var newHTML = rootElement.children('.networkAssignedInterface').attr('default').replaceAll('\\', '');
+    rootElement.children('.networkAssignedInterface').html('<span style="padding-left: 0.5rem;margin-left: 0.1em;">NAT interface:</span>' + newHTML);
+
+    // VPN port
+    var newHTML = rootElement.children('.networkAssignedPort').children('.networkPort').attr('default');
+    rootElement.children('.networkAssignedPort').children('.networkPort').html(newHTML);
+
+    // Allowed netowrks
+    var newHTML = rootElement.children('.networkAllowedNetworks').attr('default').replaceAll('\\', '');
+    rootElement.children('.networkAllowedNetworks').html('<span style="padding-left: 0.5rem;margin-left: 0.1em;">Allowed networks:</span></br>' + newHTML + '<span class="networkAddAllowedNetwork">+</span>');
+
+    // Disallowed netowrks
+    var newHTML = rootElement.children('.networkDisallowedNetworks').attr('default').replaceAll('\\', '');
+    rootElement.children('.networkDisallowedNetworks').html('<span style="padding-left: 0.5rem;margin-left: 0.1em;">Disallowed networks:</span></br>' + newHTML + '<span class="networkAddDisallowedNetwork">+</span>');
+
+    // Network settings
+    var newHTML = rootElement.children('.networkSettings').attr('default').replaceAll('\\', '');
+    rootElement.children('.networkSettings').html(newHTML);
+
+
+} );
+
+$( ".networkChangeButton" ).on( "click", function() {
+
+    var rootElement = $(this).parent().parent().parent();
+
+    var networkName = rootElement.children('.networkName').html();
+
+    var networkAddress = rootElement.children('.networkAssignedNetworks').children('.networkAddress').html();
+
+    var networkNATInterface = rootElement.children('.networkAssignedInterface').children('.networkAddNATInterface').html();
+
+    var networkVPNPort = rootElement.children('.networkAssignedPort').children('.networkPort').html();
+
+    var networkAllowedNetworks = '';
+    var allowedNetworksLength = rootElement.children('.networkAllowedNetworks').children('.networkAllowedNetwork').length;
+    for (let index = 0; index < allowedNetworksLength; index++) {
+        networkAllowedNetworks += ',' + (rootElement.children('.networkAllowedNetworks').children('.networkAllowedNetwork')[index]).innerHTML;
+    }
+    networkAllowedNetworks = networkAllowedNetworks.slice(1);
+
+
+
+    var networkDisallowedNetworks = '';
+    var disallowedNetworksLength = rootElement.children('.networkDisallowedNetworks').children('.networkDisallowedNetwork').length;
+    for (let index = 0; index < disallowedNetworksLength; index++) {
+        networkDisallowedNetworks += ',' + (rootElement.children('.networkDisallowedNetworks').children('.networkDisallowedNetwork')[index]).innerHTML;
+    }
+    networkDisallowedNetworks = networkDisallowedNetworks.slice(1);
+
+    if (rootElement.children('.networkSettings').children('.lanAccess').hasClass('networkOptionsActive')) {
+        var networkLANAccess = 1; 
+    }
+    else{
+        var networkLANAccess = 0;
+    }
+
+    if (rootElement.children('.networkSettings').children('.activeNet').hasClass('networkOptionsActive')) {
+        var networkActive = 1; 
+    }
+    else{
+        var networkActive = 0;
+    }
+
+    $.post( "/admin/networks/networkChange.php", { networkName: networkName,networkAddress: networkAddress,networkNATInterface: networkNATInterface,networkPort: networkVPNPort,networkAllowedNetworks: networkAllowedNetworks,networkDisallowedNetworks: networkDisallowedNetworks,lanAccess: networkLANAccess,activeOption:  networkActive}, function(data){
+
+    if(data.includes('Success')){
+        getAlert('Network was changed', 1);
+
+        rootElement.fadeOut(500);
+        setTimeout(() => {
+            if(networkNATInterface == 'None'){
+                networkNATInterface = '<span class="networkAddNATInterface">None</span>';
+            }
+            else{
+                networkNATInterface = '<span class="networkAddNATInterface" style="background-color: var(--myRed); border: 1px solid var(--myRed);">'+networkNATInterface+'</span>';
+            }
+
+            var networkAllowedNetworksHTML = '';
+            networkAllowedNetworks = networkAllowedNetworks.split(',');
+
+            if (networkAllowedNetworks[0] != '') {
+                var i = 0;
+                while (networkAllowedNetworks.length > i) {
+                    networkAllowedNetworksHTML += '<span class="networkAllowedNetwork" contentEditable="true">'+ networkAllowedNetworks[i] +'</span>';
+                i++;
+                }
+            }
+
+            var networkDisallowedNetworksHTML = '';
+            networkDisallowedNetworks = networkDisallowedNetworks.split(',');
+
+            if (networkDisallowedNetworks[0] != 0) {
+                var i = 0;
+                while (networkDisallowedNetworks.length > i) {
+                    networkDisallowedNetworksHTML += '<span class="networkDisallowedNetwork" contentEditable="true">' + networkDisallowedNetworks[i] + '</span>';
+                    i++;
+                }
+            }
+
+
+
+            if (networkActive == 1) {
+                networkActive = `<span class="networkOptions activeNet networkOptionsActive">
+                                    <svg class="networkSVGDisabled" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+                                    Active
+                                </span>`;
+            }
+            else{
+                networkActive = `<span class="networkOptions activeNet">
+                                    <svg class="" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="networkSVGDisabled"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+                                    Active
+                                </span>`;
+            }
+
+            if(networkLANAccess == 1){
+                networkLANAccess = `<span class="networkOptions lanAccess networkOptionsActive"><svg class="" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" class="networkSVGDisabled"><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>LAN access</span>`;
+            }
+            else{
+                networkLANAccess = `<span class="networkOptions lanAccess"><svg class="networkSVGDisabled" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" class=""><style>svg{fill:#FEFCFB}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg>LAN access</span>`;
+            }
+
+            // Network address
+            rootElement.children('.networkAssignedNetworks').children('.networkAddress').html(networkAddress);
+            rootElement.children('.networkAssignedNetworks').children('.networkAddress').attr('default', networkAddress.replace(/(['"])/g, "\\$1"));            
+
+            // NAT interface
+            rootElement.children('.networkAssignedInterface').html('<span style="padding-left: 0.5rem;margin-left: 0.1em;">NAT interface:</span>' + networkNATInterface);
+            rootElement.children('.networkAssignedInterface').attr('default' , networkNATInterface.replace(/(['"])/g, "\\$1"));  
+
+            // VPN port
+            rootElement.children('.networkAssignedPort').children('.networkPort').html(networkVPNPort);
+            rootElement.children('.networkAssignedPort').children('.networkPort').attr('default' , networkVPNPort.replace(/(['"])/g, "\\$1"));  
+
+            // Allowed netowrks
+            rootElement.children('.networkAllowedNetworks').html('<span style="padding-left: 0.5rem;margin-left: 0.1em;">Allowed networks:</span><br>' + networkAllowedNetworksHTML + '<span class="networkAddAllowedNetwork">+</span>');
+            rootElement.children('.networkAllowedNetworks').attr('default' , networkAllowedNetworksHTML.replace(/(['"])/g, "\\$1"));  
+            // Disallowed netowrks
+            rootElement.children('.networkDisallowedNetworks').html('<span style="padding-left: 0.5rem;margin-left: 0.1em;">Disallowed networks:</span><br>' + networkDisallowedNetworksHTML + '<span class="networkAddDisallowedNetwork">+</span>');
+            rootElement.children('.networkDisallowedNetworks').attr('default' , networkDisallowedNetworksHTML.replace(/(['"])/g, "\\$1"));  
+
+            // Network settings
+            rootElement.children('.networkSettings').html(networkLANAccess + networkActive);
+            rootElement.children('.networkSettings').attr('default' , (networkLANAccess + networkActive).replace(/(['"])/g, "\\$1"));  
+
+            
+            rootElement.fadeIn(500);
+        }, 500);
+
+        return;
+
+    }else{
+        getAlert(data, 0);
+        return;
+    }
+
+    });
+
+});

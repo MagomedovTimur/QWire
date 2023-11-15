@@ -124,39 +124,39 @@
 
                                 <div class="col-12 p-2 networkAssignedNetworks">
                                     <span style="padding-left: 0.5rem;margin-left: 0.1em;">Network address:</span>
-                                    <span class="networkAddress" contentEditable="true">' . $configAddress . '</span>
+                                    <span class="networkAddress" contentEditable="true" default="' . addslashes(str_replace("\n", "", $configAddress)) . '">' . $configAddress . '</span>
                                 </div>
 
-                                <div class="col-12 p-2 networkAssignedInterface">
+                                <div class="col-12 p-2 networkAssignedInterface" default=\''.addslashes(str_replace("\n", "", $configNATInterface)).'\'>
                                     <span style="padding-left: 0.5rem;margin-left: 0.1em;">NAT interface:</span>
                                     '.$configNATInterface.'
                                 </div>
 
                                 <div class="col-12 p-2 networkAssignedPort">
                                     <span style="padding-left: 0.5rem;margin-left: 0.1em;">VPN port:</span>
-                                    <span class="networkPort" contentEditable="true">'. $configPort .'</span>
+                                    <span class="networkPort" contentEditable="true" default=\''. addslashes(str_replace("\n", "", $configPort)) .'\'>'. $configPort .'</span>
                                 </div>
 
-                                <div class="col-12 p-2 networkAllowedNetworks">
+                                <div class="col-12 p-2 networkAllowedNetworks" default=\''.addslashes(str_replace("\n", "", $userAllowedNetsHTML)).'\'>
                                     <span style="padding-left: 0.5rem;margin-left: 0.1em;">Allowed networks:</span></br>
                                     '.$userAllowedNetsHTML.'
                                     <span class="networkAddAllowedNetwork">+</span>
                                 </div>
 
-                                <div class="col-12 p-2 networkDisallowedNetworks">
+                                <div class="col-12 p-2 networkDisallowedNetworks" default=\''.addslashes(str_replace("\n", "", $userDisallowedNetsHTML)).'\'>
                                     <span style="padding-left: 0.5rem;margin-left: 0.1em;">Disallowed networks:</span></br>
                                     '.$userDisallowedNetsHTML.'
                                     <span class="networkAddDisallowedNetwork">+</span>
                                 </div>
                                 
-                                <div class="col-12 pt-2 p-1 pb-3 networkSettings">
+                                <div class="col-12 pt-2 p-1 pb-3 networkSettings" default=\''. addslashes(str_replace("\n", "", $configLAN . $configIfActive)) .'\'>
                                     '. $configLAN . $configIfActive .'
                                 </div>
 
                                 <div class="networkCardButtonsBoxDiv">
                                     <div class="pt-2 pb-2 row networkCardButtonsBox">
 
-                                        <div class="col-4 networkCardButton text-center networkChengeButton">
+                                        <div class="col-4 networkCardButton text-center networkChangeButton">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1.3em" viewBox="0 0 448 512"><style>svg{fill:#FEFCFB}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
                                         </div>
                                         <div class="col-4 networkCardButton text-center networkResetButton">
