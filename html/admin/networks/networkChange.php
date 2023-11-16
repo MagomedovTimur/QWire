@@ -267,8 +267,12 @@ $ifActive = $_POST['activeOption'];
 # Check escape sequences in user input. If incorrect - echo error and die()
 checkEscapeSeq($networkName,$networkAddress,$natInterface,$networkPort,$networkAllowedNets,$networkDisallowedNets,$ifLANRouting,$ifActive);
 
-# Check unser input collisions with existing configs
+# Check user input collisions with existing configs
 checkCollisions($networkName, $networkAddress, $networkPort);
+
+# Disable net by default
+exec('sudo wg-quick down ' . $networkName);
+exec('sudo systemctl disable wg-quick@' . $networkName);
 
 # Copy raw allowed and disallowed networks for config comment  
 $userNetworkAllowedNets = $networkAllowedNets;
@@ -336,9 +340,6 @@ $configFile = fopen("/etc/wireguard/". $networkName .".conf", "w") or die("Unabl
 fwrite($configFile, $networkConfigTemplate);
 fclose($configFile);
 
-# Disable net by default
-exec('sudo wg-quick down ' . $networkName);
-exec('sudo systemctl disable wg-quick@' . $networkName);
 
 # If VPN is set active => start and enable
 if ($ifActive === '1') {
