@@ -40,6 +40,10 @@ iptables -P FORWARD DROP
 # Save iptables config
 iptables-save > /etc/iptables/rules.v4
 
+# Enable ipv4 forwarding
+sysctl -w net.ipv4.ip_forward=1
+sysctl --system
+
 # Install requirements for python
 echo "Satisfying python requirements..."
 pip3 install netaddr

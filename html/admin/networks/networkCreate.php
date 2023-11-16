@@ -142,10 +142,6 @@ function iptablesCalculator($AllowedIPsArray, $natInterface){
         $iptablesPostDown .= 'iptables -D FORWARD -i %i -d '. str_replace(array("\n", "\r"), '', $allowedNetwork) .' -j ACCEPT; ';
     }
 
-    # Drop by defult
-    $iptablesPostUp .='iptables -A FORWARD -i %i -j DROP;';
-    $iptablesPostDown .='iptables -D FORWARD -i %i -j DROP;';
-
     if ($natInterface !== 'None') {
         $iptablesPostUp .= 'iptables -t nat -A POSTROUTING -o '.$natInterface.' -j MASQUERADE; ';
         $iptablesPostDown .= 'iptables -t nat -D POSTROUTING -o '.$natInterface.' -j MASQUERADE; ';
