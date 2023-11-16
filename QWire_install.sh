@@ -5,7 +5,7 @@ QWire_OS=`cat /etc/os-release | awk '/^ID=/{print substr($0,4)}'`
 
 case $QWire_OS  in
     *"debian"*)
-		apt-get -y install sudo apache2 wireguard curl iptables sysstat grep iproute2 python3 libapache2-mod-php git iptables-persistent
+		apt-get -y install sudo apache2 wireguard curl iptables sysstat grep iproute2 python3 libapache2-mod-php git iptables-persistent pip
         ;;
     *)
         echo "Failed to install packages: Linux distribution is not supported by this script"
