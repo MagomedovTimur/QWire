@@ -144,7 +144,12 @@ function iptablesCalculator($AllowedIPsArray, $natInterface){
 
     if ($natInterface !== 'None') {
         $iptablesPostUp .= 'iptables -t nat -A POSTROUTING -o '.$natInterface.' -j MASQUERADE; ';
+        $iptablesPostUp .= 'iptables -A FORWARD -i %i -o '.$natInterface.' -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; ';
+        $iptablesPostUp .= 'iptables -A FORWARD -i '.$natInterface.' -o %i -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; ';
+
         $iptablesPostDown .= 'iptables -t nat -D POSTROUTING -o '.$natInterface.' -j MASQUERADE; ';
+        $iptablesPostDown .= 'iptables -D FORWARD -i %i -o '.$natInterface.' -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; ';
+        $iptablesPostDown .= 'iptables -D FORWARD -i '.$natInterface.' -o %i -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT; ';
     }
 
     return [$iptablesPostUp, $iptablesPostDown];
